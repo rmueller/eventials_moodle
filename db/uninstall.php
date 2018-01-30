@@ -19,7 +19,7 @@
  *
  * @see uninstall_plugin()
  *
- * @package    mod_newmodule
+ * @package    mod_eventials
  * @copyright  2016 Your Name <your@email.address>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -27,6 +27,6 @@
 /**
  * Custom uninstallation procedure
  */
-function xmldb_newmodule_uninstall() {
+function xmldb_eventials_uninstall() {
     return true;
 }
