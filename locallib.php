@@ -57,7 +57,7 @@ function eventials_add_user_to_webinar($email,$webinar_id){
     ]);
 }
 
-function eventials_schedule_webinar($title, $start_time, $duration, $description, $timezone_id=69){
+function eventials_schedule_webinar($title, $start_time, $duration, $description, $timezone_id=69, $speaker_email){
     $token = eventials_login();
     $client = new \GuzzleHttp\Client();
 
@@ -79,5 +79,29 @@ function eventials_schedule_webinar($title, $start_time, $duration, $description
     ]);
     if ($res->getStatusCode() >= 400)
         throw new Exception("Error trying to add new webinar. HTTP code {$res->getStatusCode()}. - {$res->getBody()}");
-    return json_decode($res->getBody());
+    $webinar=json_decode($res->getBody());
+    eventials_add_speaker($webinar->id, $speaker_email, $token, $client);
+    return $webinar;
+}
+
+function eventials_add_speaker($webinar_id, $speaker_email, $token, $client){
+    $res = $client->request('POST', "https://api.eventials.com/v1/webinars/{$webinar_id}/speakers", [
+        'json' =>  [
+            'email'=>$speaker_email
+        ],
+        'headers' => ['Authorization'=>"Bearer {$token}"]
+    ]);
+    if ($res->getStatusCode() >= 400)
+        throw new Exception("Error trying to add new speaker. Webinar {$webinar_id} - Speaker {$speaker_email} HTTP code {$res->getStatusCode()}. - {$res->getBody()}");
+    $speaker = json_decode($res->getBody());
+
+    $res = $client->request('POST', "https://api.eventials.com/v1/webinars/{$webinar_id}/speakers/{$speaker->id}/permissions", [
+        'json' =>  [
+            'name'=>'transmission_mode'
+        ],
+        'headers' => ['Authorization'=>"Bearer {$token}"]
+    ]);
+
+    if ($res->getStatusCode() >= 400)
+        throw new Exception("Error trying to add permission to the speaker. Webinar {$webinar_id} - Speaker {$speaker->id} HTTP code {$res->getStatusCode()}. - {$res->getBody()}");
 }

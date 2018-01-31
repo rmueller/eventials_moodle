@@ -44,9 +44,8 @@ if ($id) {
 } else {
     error('You must specify a course_module ID or an instance ID');
 }
-eventials_add_user_to_webinar($USER->email,$eventials->webinar_id);
 
-// redirect("https://www.eventials.com/rafael_88?ev="+$eventials.);
+eventials_add_user_to_webinar($USER->email,$eventials->webinar_id);
 
 require_login($course, true, $cm);
 
@@ -86,10 +85,17 @@ if ($eventials->intro) {
 
 echo $OUTPUT->box(var_dump($eventials));
 echo $OUTPUT->box(var_dump($USER));
-echo $OUTPUT->box(var_dump($USER->email));
+$context=context_module::instance($cm->id);
 
+if (has_capability('moodle/course:update', $context)) {
+    echo $OUTPUT->box("TEACHER");
+} else {
+    echo $OUTPUT->box("STUDENT");
+}
+
+$link = "{$eventials->webinar_uri}?email={$USER->email}";
 // Replace the following lines with you own code.
-echo $OUTPUT->heading('Acesse <a href="https://www.eventials.com">https://www.eventials.com</a> para acompanhar o webinar.');
+echo $OUTPUT->heading("Acesse <a href='{$link}'>https://www.eventials.com</a> para acompanhar o webinar.");
 
 // Finish the page.
 echo $OUTPUT->footer();
