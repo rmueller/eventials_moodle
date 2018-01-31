@@ -83,6 +83,8 @@ if ($eventials->intro) {
 // talvez devemos sempre buscar o username para evitar algo hardcoded
 
 echo $OUTPUT->box(var_dump($eventials));
+echo $OUTPUT->box(var_dump($USER));
+echo $OUTPUT->box(var_dump($USER->email));
 
 // Replace the following lines with you own code.
 echo $OUTPUT->heading('Acesse <a href="https://www.eventials.com">https://www.eventials.com</a> para acompanhar o webinar.');

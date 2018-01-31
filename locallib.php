@@ -44,6 +44,18 @@ function eventials_login(){
     return json_decode($res->getBody())->access_token;
 }
 
+function eventials_add_user_to_webinar($email,$webinar_id){
+    $token = eventials_login();
+    $client = new \GuzzleHttp\Client();
+
+    $res = $client->request('POST', "https://api.eventials.com/v1/webinars/{$webinar_id}/access-control", [
+        'json' =>  [
+            'send_invitation'=>false,
+            'emails' => [$email]
+        ],
+        'headers' => ['Authorization'=>"Bearer {$token}"]
+    ]);
+}
 
 function eventials_schedule_webinar($title, $start_time, $duration, $description, $timezone_id=69){
     $token = eventials_login();
@@ -57,7 +69,7 @@ function eventials_schedule_webinar($title, $start_time, $duration, $description
             'description' => $description,
             'category_id' => 6,
             'timezone_id' => $timezone_id,
-            'is_public' => true,
+            'is_public' => false,
             'is_draft' => false,
             'embed_enabled' => true,
             'ticket_price' => 0,

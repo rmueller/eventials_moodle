@@ -15,8 +15,8 @@
         <FIELD NAME="timemodified" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" DEFAULT="0" SEQUENCE="false"/>
         <FIELD NAME="grade" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="100" SEQUENCE="false" COMMENT="The maximum grade. Can be negative to indicate the use of a scale."/>
         <FIELD NAME="webinar_uri" TYPE="text" LENGTH="500" NOTNULL="true" SEQUENCE="false" COMMENT="The webinar URI."/>
-        <FIELD NAME="webinar_embed_player" TYPE="text" LENGTH="500" NOTNULL="true" SEQUENCE="false" COMMENT="The webinar URI."/>
-        <FIELD NAME="webinar_embed_chat" TYPE="text" LENGTH="500" NOTNULL="true" SEQUENCE="false" COMMENT="The webinar URI."/>
+        <FIELD NAME="webinar_embed_player" TYPE="text" LENGTH="500" NOTNULL="false" SEQUENCE="false" COMMENT="The embed player URI."/>
+        <FIELD NAME="webinar_embed_chat" TYPE="text" LENGTH="500" NOTNULL="false" SEQUENCE="false" COMMENT="The embed chat URI."/>
       </FIELDS>
       <KEYS>
         <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
