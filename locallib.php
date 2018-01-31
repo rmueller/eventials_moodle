@@ -30,12 +30,13 @@ require_once(dirname(__FILE__).'/vendor/autoload.php');
 
 function eventials_login(){
     global $DB;
-    $conf = $DB->get_record('eventials_access_token',[]);
-
+    // $conf = $DB->get_record('eventials_access_token',[]);
+    $clientId=get_config('eventials','client_id');
+    $clientSecret=get_config('eventials','client_secret')
 
     $client = new \GuzzleHttp\Client();
     $res = $client->request('POST', 'https://api.eventials.com/v1/oauth/token', [
-        'body' => "grant_type=client_credentials&client_id=3e1dcdf33acd445e933b50394b18f024&client_secret=82f39262de5741d5823261b27c3bbb09",
+        'body' => "grant_type=client_credentials&client_id={$clientId}&client_secret={$clientSecret}",
         'headers' => ['Content-Type'=>"application/x-www-form-urlencoded"]
     ]);
 

@@ -59,7 +59,9 @@ class mod_eventials_mod_form extends moodleform_mod {
         $mform->addRule('name', null, 'required', null, 'client');
         $mform->addRule('name', get_string('maximumchars', '', 255), 'maxlength', 255, 'client');
         $mform->addHelpButton('name', 'eventialsname', 'eventials');
-/*
+
+        // agora falta apenas criar os campos para serem preenchidos na interface e persistir no banco
+
         // Adding the standard "intro" and "introformat" fields./*
         if ($CFG->branch >= 29) {
             $this->standard_intro_elements();
@@ -76,7 +78,7 @@ class mod_eventials_mod_form extends moodleform_mod {
 
         $mform->addElement('header', 'eventialsfieldset', get_string('eventialsfieldset', 'eventials'));
         $mform->addElement('static', 'label2', 'eventialssetting2', 'Your eventials fields go here. Replace me!');
-*/
+
         // Add standard grading elements.
          $this->standard_grading_coursemodule_elements();
 
