@@ -82,6 +82,7 @@ function eventials_add_instance(stdClass $eventials, mod_eventials_mod_form $mfo
     // You may have to add extra stuff in here.
     $webinar = eventials_schedule_webinar('titulo','2018-02-01T21:00:00Z',1,'descricao');
     $eventials->webinar_uri = $webinar->url;
+    $eventials->webinar_id = $webinar->id;
     // only available in public webinars
     // $eventials->webinar_embed_player = $webinar->embed->player;
     // $eventials->webinar_embed_chat = $webinar->embed->chat;

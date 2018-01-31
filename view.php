@@ -27,6 +27,7 @@
 
 require_once(dirname(dirname(dirname(__FILE__))).'/config.php');
 require_once(dirname(__FILE__).'/lib.php');
+require_once(dirname(__FILE__).'/locallib.php');
 require_once(dirname(__FILE__).'/vendor/autoload.php');
 
 $id = optional_param('id', 0, PARAM_INT); // Course_module ID, or
@@ -43,6 +44,7 @@ if ($id) {
 } else {
     error('You must specify a course_module ID or an instance ID');
 }
+eventials_add_user_to_webinar($USER->email,$eventials->webinar_id);
 
 // redirect("https://www.eventials.com/rafael_88?ev="+$eventials.);
 

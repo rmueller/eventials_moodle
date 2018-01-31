@@ -48,7 +48,7 @@ function eventials_add_user_to_webinar($email,$webinar_id){
     $token = eventials_login();
     $client = new \GuzzleHttp\Client();
 
-    $res = $client->request('POST', "https://api.eventials.com/v1/webinars/{$webinar_id}/access-control", [
+    $client->request('POST', "https://api.eventials.com/v1/webinars/{$webinar_id}/access-control", [
         'json' =>  [
             'send_invitation'=>false,
             'emails' => [$email]
