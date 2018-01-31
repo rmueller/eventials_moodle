@@ -78,10 +78,10 @@ class mod_eventials_mod_form extends moodleform_mod {
         $mform->addElement('static', 'label2', 'eventialssetting2', 'Your eventials fields go here. Replace me!');
 
         // Add standard grading elements.
-        $this->standard_grading_coursemodule_elements();
+        // $this->standard_grading_coursemodule_elements();
 
         // Add standard elements, common to all modules.
-        $this->standard_coursemodule_elements();
+        // $this->standard_coursemodule_elements();
 
         // Add standard buttons, common to all modules.
         $this->add_action_buttons();

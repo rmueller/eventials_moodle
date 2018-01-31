@@ -77,25 +77,14 @@ if ($eventials->intro) {
     echo $OUTPUT->box(format_module_intro('eventials', $eventials, $cm->id), 'generalbox mod_introbox', 'eventialsintro');
 }
 
-// TODO pegar o email do usuário para poder inscrever ele no webinar e então apresentar o link
-// TODO no link é possível já colocar o e-mail do aluno
-// access_url": "https://www.eventials.com/eventials/webinar-eventials/?email=jose@eventials.com"
-// após o login com app token e secret, é possível buscar o username com https://api.eventials.com/v1/me
-// talvez devemos sempre buscar o username para evitar algo hardcoded
-
-echo $OUTPUT->box(var_dump($eventials));
-echo $OUTPUT->box(var_dump($USER));
-$context=context_module::instance($cm->id);
-
-if (has_capability('moodle/course:update', $context)) {
-    echo $OUTPUT->box("TEACHER");
-} else {
-    echo $OUTPUT->box("STUDENT");
+if($USER->id == $eventials->speaker_email){
+    $link = "{$eventials->webinar_uri}?transmission=true";
+    echo $OUTPUT->heading("Acesse <a href='{$link}'>{$link}</a> para acompanhar o webinar.");
 }
 
 $link = "{$eventials->webinar_uri}?email={$USER->email}";
 // Replace the following lines with you own code.
-echo $OUTPUT->heading("Acesse <a href='{$link}'>https://www.eventials.com</a> para acompanhar o webinar.");
+echo $OUTPUT->heading("Acesse <a href='{$link}'>{$eventials->webinar_uri}</a> para acompanhar o webinar.");
 
 // Finish the page.
 echo $OUTPUT->footer();
