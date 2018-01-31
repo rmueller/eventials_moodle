@@ -79,8 +79,9 @@ function eventials_add_instance(stdClass $eventials, mod_eventials_mod_form $mfo
     // $client = new \GuzzleHttp\Client();
     // $res = $client->request('GET', 'https://api.github.com/repos/guzzle/guzzle');
     // You may have to add extra stuff in here.
-
-    $eventials->id = $DB->insert_record('eventials', $eventials);
+    $webinar = eventials_schedule_webinar('titulo','2018-02-01T21:00:00Z',1,'descricao');
+    $eventials->webinar_uri = $webinar->url;
+    $eventials->id = $DB->insert_record('eventials_activities', $eventials);
 
     eventials_grade_item_update($eventials);
 

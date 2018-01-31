@@ -29,14 +29,14 @@
 defined('MOODLE_INTERNAL') || die();
 
 $string['modulename'] = 'eventials';
-$string['modulenameplural'] = 'eventialss';
-$string['modulename_help'] = 'Use the eventials module for... | The eventials module allows...';
-$string['eventials:addinstance'] = 'Add a new eventials';
+$string['modulenameplural'] = 'eventials';
+$string['modulename_help'] = 'Criei webinars e aulas síncronas com a Eventials';
+$string['eventials:addinstance'] = 'Adicionar novo webinar';
 $string['eventials:submit'] = 'Submit eventials';
 $string['eventials:view'] = 'View eventials';
 $string['eventialsfieldset'] = 'Custom example fieldset';
-$string['eventialsname'] = 'eventials name';
-$string['eventialsname_help'] = 'This is the content of the help tooltip associated with the eventialsname field. Markdown syntax is supported.';
+$string['eventialsname'] = 'Eventials';
+$string['eventialsname_help'] = 'Você pode criar um webinar para ser assistido ao vivo.';
 $string['eventials'] = 'eventials';
-$string['pluginadministration'] = 'eventials administration';
+$string['pluginadministration'] = 'Eventials';
 $string['pluginname'] = 'eventials';

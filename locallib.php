@@ -30,26 +30,25 @@ require_once(dirname(__FILE__).'/vendor/autoload.php');
 
 function eventials_login(){
     global $DB;
-    $conf = $DB->get_record('eventials_access_token');
+   // $conf = $DB->get_record('eventials_access_token');
 
     $client = new \GuzzleHttp\Client();
     $res = $client->request('POST', 'https://api.eventials.com/v1/oauth/token', [
-        'json' =>  ['grant_type'=>'client_credentials', 'client_id' => $conf->client_id, 'client_secret' => $conf->client_secret]
+        'json' =>  ['grant_type'=>'client_credentials', 'client_id' => '3e1dcdf33acd445e933b50394b18f024', 'client_secret' => '82f39262de5741d5823261b27c3bbb09']
         ]);
-    $resposta = json_decode($res->getBody());
-    return $resposta->access_token;
+    return json_decode($res->getBody())->access_token;
 }
 
 
-function eventials_schedule_webinar($title, $start_time, $duration, $description, $timezone_id){
+function eventials_schedule_webinar($title, $start_time, $duration, $description, $timezone_id=69){
     $token = eventials_login();
     $client = new \GuzzleHttp\Client();
     $res = $client->request('POST', 'https://api.eventials.com/v1/webinars', [
         'json' =>  ['title'=>$title,
-            'start_time' => $start_time, // "2016-01-01T21:00:00Z"
+            'start_time' => $start_time,
             'duration' => $duration,
             'description' => $description,
-            'timezone_id' => 69, //$timezone_id,
+            'timezone_id' => $timezone_id,
             'caregoty_id' => 6,
             'is_public' => true,
             'is_draft' => false,
