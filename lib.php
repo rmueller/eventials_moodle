@@ -72,7 +72,8 @@ function eventials_supports($feature) {
  * @return int The id of the newly inserted eventials record
  */
 function eventials_add_instance(stdClass $eventials, mod_eventials_mod_form $mform = null) {
-    global $DB;
+    global $CFG, $DB;
+    require_once($CFG->dirroot . '/mod/eventials/locallib.php');
 
     $eventials->timecreated = time();
 
@@ -81,7 +82,9 @@ function eventials_add_instance(stdClass $eventials, mod_eventials_mod_form $mfo
     // You may have to add extra stuff in here.
     $webinar = eventials_schedule_webinar('titulo','2018-02-01T21:00:00Z',1,'descricao');
     $eventials->webinar_uri = $webinar->url;
-    $eventials->id = $DB->insert_record('eventials_activities', $eventials);
+    $eventials->webinar_embed_uri = $webinar->embed->player;
+    $eventials->webinar_embed_chat_uri = $webinar->embed->chat;
+    $eventials->id = $DB->insert_record('eventials', $eventials);
 
     eventials_grade_item_update($eventials);
 
