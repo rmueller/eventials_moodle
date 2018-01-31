@@ -77,6 +77,8 @@ if ($eventials->intro) {
     echo $OUTPUT->box(format_module_intro('eventials', $eventials, $cm->id), 'generalbox mod_introbox', 'eventialsintro');
 }
 
+echo $OUTPUT->box(var_dump(get_config('eventials')));
+
 if($USER->id == $eventials->speaker_email){
     $link = "{$eventials->webinar_uri}?transmission=true";
     echo $OUTPUT->heading("Acesse <a href='{$link}'>{$link}</a> para acompanhar o webinar.");
