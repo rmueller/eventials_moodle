@@ -82,10 +82,6 @@ if ($eventials->intro) {
 // após o login com app token e secret, é possível buscar o username com https://api.eventials.com/v1/me
 // talvez devemos sempre buscar o username para evitar algo hardcoded
 
-$client = new \GuzzleHttp\Client();
-$res = $client->request('GET', 'https://api.github.com/repos/guzzle/guzzle');
-echo $OUTPUT->box("faasfdf" + $res->getStatusCode());
-
 echo $OUTPUT->box(var_dump($eventials));
 
 // Replace the following lines with you own code.
