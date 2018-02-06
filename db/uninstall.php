@@ -20,7 +20,7 @@
  * @see uninstall_plugin()
  *
  * @package    mod_eventials
- * @copyright  2016 Your Name <your@email.address>
+ * @copyright  2018 Eventials <relacionamento@eventials.com>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 

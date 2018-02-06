@@ -21,7 +21,7 @@
  * visit: http://docs.moodle.org/en/Development:lib/formslib.php
  *
  * @package    mod_eventials
- * @copyright  2016 Your Name <your@email.address>
+ * @copyright  2018 Eventials <relacionamento@eventials.com>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
@@ -48,26 +48,22 @@ class mod_eventials_mod_form extends moodleform_mod {
 
         // Adding the "general" fieldset, where all the common settings are showed.
         $mform->addElement('header', 'general', get_string('general', 'form'));
-
-        // Adding the standard "name" field.
-        $mform->addElement('text', 'name', get_string('eventialsname', 'eventials'), array('size' => '64'));
         if (!empty($CFG->formatstringstriptags)) {
             $mform->setType('name', PARAM_TEXT);
         } else {
             $mform->setType('name', PARAM_CLEANHTML);
         }
-        $mform->addRule('name', null, 'required', null, 'client');
-        $mform->addRule('name', get_string('maximumchars', '', 255), 'maxlength', 255, 'client');
-        $mform->addHelpButton('name', 'eventialsname', 'eventials');
 
-        // agora falta apenas criar os campos para serem preenchidos na interface e persistir no banco
-
-        // Adding the standard "intro" and "introformat" fields./*
         if ($CFG->branch >= 29) {
             $this->standard_intro_elements();
         } else {
             $this->add_intro_editor();
         }
+
+        $mform->addElement('text', 'name', 'Título', array('size' => '64'));
+        $mform->addRule('name', null, 'required', null, 'client');
+        $mform->addRule('name', get_string('maximumchars', '', 255), 'maxlength', 255, 'client');
+        $mform->addHelpButton('name', 'eventialsname', 'eventials');
 
         // Adding the rest of eventials settings, spreading all them into this fieldset
         // ... or adding more fieldsets ('header' elements) if needed for better logic.
@@ -76,7 +72,7 @@ class mod_eventials_mod_form extends moodleform_mod {
         $mform->addElement('select', 'tipo', 'teste', array('1'  => 'Sim', '0'  => 'Não'));
         $mform->addElement('htmleditor', 'description2', get_string('description'), array('rows'  => 10, 'cols'  => 64));
 
-        $mform->addElement('header', 'eventialsfieldset', get_string('eventialsfieldset', 'eventials'));
+//        $mform->addElement('header', 'eventialsfieldset', get_string('eventialsfieldset', 'eventials'));
         $mform->addElement('static', 'label2', 'eventialssetting2', 'Your eventials fields go here. Replace me!');
 
         // Add standard grading elements.

@@ -19,8 +19,8 @@
  *
  * @package   mod_eventials
  * @category  grade
- * @copyright 2016 Your Name <your@email.address>
- * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @copyright  2018 Eventials <relacionamento@eventials.com>
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 require_once(__DIR__ . "../../../config.php");

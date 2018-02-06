@@ -21,7 +21,7 @@
  * if you like, and it can span multiple lines.
  *
  * @package    mod_eventials
- * @copyright  2016 Your Name <your@email.address>
+ * @copyright  2018 Eventials <relacionamento@eventials.com>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
@@ -45,8 +45,6 @@ if ($id) {
     error('You must specify a course_module ID or an instance ID');
 }
 
-eventials_add_user_to_webinar($USER->email,$eventials->webinar_id);
-
 require_login($course, true, $cm);
 
 $event = \mod_eventials\event\course_module_viewed::create(array(
@@ -62,6 +60,7 @@ $event->trigger();
 $PAGE->set_url('/mod/eventials/view.php', array('id' => $cm->id));
 $PAGE->set_title(format_string($eventials->name));
 $PAGE->set_heading(format_string($course->fullname));
+$PAGE->set_cacheable(false);
 
 /*
  * Other things you may want to set - remove if not needed.
@@ -69,22 +68,27 @@ $PAGE->set_heading(format_string($course->fullname));
  * $PAGE->set_focuscontrol('some-html-id');
  * $PAGE->add_body_class('eventials-'.$somevar);
  */
-
-// Output starts here.
-echo $OUTPUT->header();
+$PAGE->set_pagelayout('popup');
+/*
 // Conditions to show the intro can change to look for own settings or whatever.
 if ($eventials->intro) {
     echo $OUTPUT->box(format_module_intro('eventials', $eventials, $cm->id), 'generalbox mod_introbox', 'eventialsintro');
 }
+*/
+echo $OUTPUT->header();
+
+$PAGE->set_url('/mod/eventials/view.php', array('id' => $cm->id));
+$PAGE->set_title(format_string($eventials->name));
+$PAGE->set_heading(format_string($course->fullname));
 
 if($USER->id == $eventials->speaker_email){
     $link = "{$eventials->webinar_uri}?transmission=true";
-    echo $OUTPUT->heading("Acesse <a href='{$link}'>{$link}</a> para acompanhar o webinar.");
+    echo $OUTPUT->heading("Acesse <a href='{$link}'>A -{$link}</a> para acompanhar o webinar.");
+} else {
+    echo $OUTPUT->box("
+            <iframe src=\"{$eventials->webinar_embed_player}\" width=\"640\" height=\"354\" webkitAllowFullScreen mozallowfullscreen allowFullScreen frameborder=\"0\" scrolling=\"no\" marginheight=\"0\" marginwidth=\"0\"></iframe>
+            <iframe src=\"{$eventials->webinar_embed_chat}?\" width=\"340\" height=\"354\" webkitAllowFullScreen mozallowfullscreen allowFullScreen frameborder=\"0\" scrolling=\"no\" marginheight=\"0\" marginwidth=\"0\"></iframe>
+        ");
+
 }
 
-$link = "{$eventials->webinar_uri}?email={$USER->email}";
-// Replace the following lines with you own code.
-echo $OUTPUT->heading("Acesse <a href='{$link}'>{$eventials->webinar_uri}</a> para acompanhar o webinar.");
-
-// Finish the page.
-echo $OUTPUT->footer();

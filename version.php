@@ -21,14 +21,16 @@
  * See https://docs.moodle.org/dev/version.php for more info.
  *
  * @package    mod_eventials
- * @copyright  2016 Your Name <your@email.address>
+ * @copyright  2018 Eventials <relacionamento@eventials.com>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 defined('MOODLE_INTERNAL') || die();
 
 $plugin->component = 'mod_eventials';
-$plugin->version = 0.1;
-$plugin->release = 'v0.1';
-$plugin->requires = 2014051200;
+$plugin->version = 1.0;
+$plugin->release = 'v1.0';
+$plugin->requires = 2016052300;
 $plugin->cron = 0;
+$plugin->maturity = MATURITY_STABLE;
+$plugin->dependencies = array();

@@ -18,11 +18,8 @@
 /**
  * English strings for eventials
  *
- * You can have a rather longer description of the file as well,
- * if you like, and it can span multiple lines.
- *
  * @package    mod_eventials
- * @copyright  2016 Your Name <your@email.address>
+ * @copyright  2018 Eventials <relacionamento@eventials.com>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
@@ -32,11 +29,10 @@ $string['modulename'] = 'eventials';
 $string['modulenameplural'] = 'eventials';
 $string['modulename_help'] = 'Criei webinars e aulas síncronas com a Eventials';
 $string['eventials:addinstance'] = 'Adicionar novo webinar';
-$string['eventials:submit'] = 'Submit eventials';
-$string['eventials:view'] = 'View eventials';
-$string['eventialsfieldset'] = 'Custom example fieldset';
+$string['eventials:submit'] = 'Criar';
+$string['eventials:view'] = 'Visualizar';
 $string['eventialsname'] = 'Eventials';
-$string['eventialsname_help'] = 'Você pode criar um webinar para ser assistido ao vivo.';
+$string['eventialsname_help'] = 'Crie um webinar para ser assistido ao vivo.';
 $string['eventials'] = 'eventials';
 $string['pluginadministration'] = 'Eventials';
 $string['pluginname'] = 'eventials';

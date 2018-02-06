@@ -21,7 +21,7 @@
  * logic, should go here. Never include this file from your lib.php!
  *
  * @package    mod_eventials
- * @copyright  2016 Your Name <your@email.address>
+ * @copyright  2018 Eventials <relacionamento@eventials.com>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
@@ -29,10 +29,8 @@ defined('MOODLE_INTERNAL') || die();
 require_once(dirname(__FILE__).'/vendor/autoload.php');
 
 function eventials_login(){
-    global $DB;
-    // $conf = $DB->get_record('eventials_access_token',[]);
     $clientId=get_config('eventials','client_id');
-    $clientSecret=get_config('eventials','client_secret')
+    $clientSecret=get_config('eventials','client_secret');
 
     $client = new \GuzzleHttp\Client();
     $res = $client->request('POST', 'https://api.eventials.com/v1/oauth/token', [
@@ -46,6 +44,7 @@ function eventials_login(){
 }
 
 function eventials_add_user_to_webinar($email,$webinar_id){
+    return;
     $token = eventials_login();
     $client = new \GuzzleHttp\Client();
 
