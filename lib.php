@@ -76,13 +76,19 @@ function eventials_add_instance(stdClass $eventials, mod_eventials_mod_form $mfo
     require_once($CFG->dirroot . '/mod/eventials/locallib.php');
 
     $eventials->timecreated = time();
+    // $eventials->timelimit tempo em segundos
+    //  1517941200
 
     // $client = new \GuzzleHttp\Client();
     // $res = $client->request('GET', 'https://api.github.com/repos/guzzle/guzzle');
     // You may have to add extra stuff in here.
-    $speaker_email="souspeaker@eventials.com";
 
-    $webinar = eventials_schedule_webinar('titulo','2018-02-01T21:00:00Z',1,'descricao',69,$speaker_email);
+    $duration = $eventials->duration / 3600;
+    $speaker_email=trim($eventials->speaker_email);
+    // TODO get all timezone lists and send the correct one
+    $webinar = eventials_schedule_webinar($eventials->title,gmdate("Y-m-d\TH:i:s\Z", $eventials->start_time)
+        ,$duration,$eventials->description,
+        69, $speaker_email);
     $eventials->webinar_uri = $webinar->url;
     $eventials->webinar_id = $webinar->id;
     $eventials->webinar_embed_player = $webinar->embed->player;
@@ -111,12 +117,18 @@ function eventials_add_instance(stdClass $eventials, mod_eventials_mod_form $mfo
  * @return boolean Success/Fail
  */
 function eventials_update_instance(stdClass $eventials, mod_eventials_mod_form $mform = null) {
-    global $DB;
-    echo var_dump($eventials);
-    die();
+    global $CFG, $DB;
+    require_once($CFG->dirroot . '/mod/eventials/locallib.php');
     $eventials->timemodified = time();
     $eventials->id = $eventials->instance;
+    $duration = $eventials->duration / 3600;
+    $speaker_email=trim($eventials->speaker_email);
 
+    $record = $DB->get_record('eventials', array('id' => $eventials->id));
+
+    eventials_update_webinar($record->webinar_id, $eventials->title,gmdate("Y-m-d\TH:i:s\Z", $eventials->start_time)
+        ,$duration,$eventials->description,
+        69, $speaker_email);
     // You may have to add extra stuff in here.
 
     $result = $DB->update_record('eventials', $eventials);

@@ -46,35 +46,18 @@ class mod_eventials_mod_form extends moodleform_mod {
 
         $mform = $this->_form;
 
-        // Adding the "general" fieldset, where all the common settings are showed.
         $mform->addElement('header', 'general', get_string('general', 'form'));
-        if (!empty($CFG->formatstringstriptags)) {
-            $mform->setType('name', PARAM_TEXT);
-        } else {
-            $mform->setType('name', PARAM_CLEANHTML);
-        }
 
+        $mform->addElement('text', 'title', 'Título', array('size' => '64'));
+        $mform->addRule('title', null, 'required', null, 'client');
+        $mform->addRule('title', get_string('maximumchars', '', 255), 'maxlength', 255, 'client');
+        $mform->setType('title', PARAM_TEXT);
 
-        $mform->addElement('text', 'name', 'Título', array('size' => '64'));
-        $mform->addRule('name', null, 'required', null, 'client');
-        $mform->addRule('name', get_string('maximumchars', '', 255), 'maxlength', 255, 'client');
-        $mform->addHelpButton('name', 'eventialsname', 'eventials');
-
-        // Adding the rest of eventials settings, spreading all them into this fieldset
-        // ... or adding more fieldsets ('header' elements) if needed for better logic.
-        $mform->addElement('htmleditor', 'description2', get_string('description'), array('rows'  => 10, 'cols'  => 64));
-        $mform->addElement('static', 'label1', 'eventialssetting1', 'Your eventials fields go here. Replace me!');
-        $mform->addElement('select', 'tipo', 'teste', array('1'  => 'Sim', '0'  => 'Não'));
-        $mform->addElement('htmleditor', 'description2', get_string('description'), array('rows'  => 10, 'cols'  => 64));
-
-
-        $mform->addElement('text', 'speaker_email');
-        $mform->setType('email', PARAM_NOTAGS);                   //Set type of element
-        $mform->setDefault('email', 'Please enter email');
-
-
-//        $mform->addElement('header', 'eventialsfieldset', get_string('eventialsfieldset', 'eventials'));
-        $mform->addElement('static', 'label2', 'eventialssetting2', 'Your eventials fields go here. Replace me!');
+        $mform->addElement('htmleditor', 'description', get_string('description'), array('rows'  => 6, 'cols'  => 40));
+        $mform->addElement('date_time_selector', 'start_time', 'Data e horário do webinar');
+        $mform->addElement('duration', 'duration', 'Duração');
+        $mform->addElement('text', 'speaker_email', 'Email do palestrante', array('size' => '50'));
+        $mform->setType('speaker_email', PARAM_NOTAGS);
 
         // Add standard grading elements.
          $this->standard_grading_coursemodule_elements();
