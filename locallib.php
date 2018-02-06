@@ -80,7 +80,11 @@ function eventials_schedule_webinar($title, $start_time, $duration, $description
     if ($res->getStatusCode() >= 400)
         throw new Exception("Error trying to add new webinar. HTTP code {$res->getStatusCode()}. - {$res->getBody()}");
     $webinar=json_decode($res->getBody());
-    eventials_add_speaker($webinar->id, $speaker_email, $token, $client);
+
+    $speaker_email=trim($speaker_email);
+    if(filter_var($speaker_email, FILTER_VALIDATE_EMAIL)) {
+        eventials_add_speaker($webinar->id, $speaker_email, $token, $client);
+    }
     return $webinar;
 }
 

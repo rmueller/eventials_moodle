@@ -54,11 +54,6 @@ class mod_eventials_mod_form extends moodleform_mod {
             $mform->setType('name', PARAM_CLEANHTML);
         }
 
-        if ($CFG->branch >= 29) {
-            $this->standard_intro_elements();
-        } else {
-            $this->add_intro_editor();
-        }
 
         $mform->addElement('text', 'name', 'Título', array('size' => '64'));
         $mform->addRule('name', null, 'required', null, 'client');
@@ -71,6 +66,12 @@ class mod_eventials_mod_form extends moodleform_mod {
         $mform->addElement('static', 'label1', 'eventialssetting1', 'Your eventials fields go here. Replace me!');
         $mform->addElement('select', 'tipo', 'teste', array('1'  => 'Sim', '0'  => 'Não'));
         $mform->addElement('htmleditor', 'description2', get_string('description'), array('rows'  => 10, 'cols'  => 64));
+
+
+        $mform->addElement('text', 'speaker_email');
+        $mform->setType('email', PARAM_NOTAGS);                   //Set type of element
+        $mform->setDefault('email', 'Please enter email');
+
 
 //        $mform->addElement('header', 'eventialsfieldset', get_string('eventialsfieldset', 'eventials'));
         $mform->addElement('static', 'label2', 'eventialssetting2', 'Your eventials fields go here. Replace me!');
