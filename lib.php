@@ -47,13 +47,13 @@ function eventials_supports($feature) {
 
     switch($feature) {
         case FEATURE_MOD_INTRO:
-            return true;
+            return false;
         case FEATURE_SHOW_DESCRIPTION:
             return true;
         case FEATURE_GRADE_HAS_GRADE:
-            return true;
+            return false;
         case FEATURE_BACKUP_MOODLE2:
-            return true;
+            return false;
         default:
             return null;
     }
