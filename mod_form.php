@@ -54,6 +54,8 @@ class mod_eventials_mod_form extends moodleform_mod {
         $mform->setType('title', PARAM_TEXT);
 
         $mform->addElement('htmleditor', 'description', get_string('description'), array('rows'  => 6, 'cols'  => 40));
+        $mform->addRule('description', null, 'required', null, 'client');
+
         $mform->addElement('date_time_selector', 'start_time', 'Data e horário do webinar');
         $mform->addElement('duration', 'duration', 'Duração');
         $mform->addElement('text', 'speaker_email', 'Email do palestrante', array('size' => '50'));

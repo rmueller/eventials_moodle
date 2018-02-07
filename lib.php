@@ -181,13 +181,11 @@ function eventials_refresh_events($courseid = 0) {
  */
 function eventials_delete_instance($id) {
     global $DB;
-
     if (! $eventials = $DB->get_record('eventials', array('id' => $id))) {
         return false;
     }
-
     // Delete any dependent records here.
-
+    eventials_delete_webinar($eventials->webinar_id);
     $DB->delete_records('eventials', array('id' => $eventials->id));
 
     eventials_grade_item_delete($eventials);
@@ -472,33 +470,4 @@ function eventials_pluginfile($course, $cm, $context, $filearea, array $args, $f
     require_login($course, true, $cm);
 
     send_file_not_found();
-}
-
-/* Navigation API */
-
-/**
- * Extends the global navigation tree by adding eventials nodes if there is a relevant content
- *
- * This can be called by an AJAX request so do not rely on $PAGE as it might not be set up properly.
- *
- * @param navigation_node $navref An object representing the navigation tree node of the eventials module instance
- * @param stdClass $course current course record
- * @param stdClass $module current eventials instance record
- * @param cm_info $cm course module information
- */
-function eventials_extend_navigation(navigation_node $navref, stdClass $course, stdClass $module, cm_info $cm) {
-    // TODO Delete this function and its docblock, or implement it.
-}
-
-/**
- * Extends the settings navigation with the eventials settings
- *
- * This function is called when the context for the page is a eventials module. This is not called by AJAX
- * so it is safe to rely on the $PAGE.
- *
- * @param settings_navigation $settingsnav complete settings navigation tree
- * @param navigation_node $eventialsnode eventials administration node
- */
-function eventials_extend_settings_navigation(settings_navigation $settingsnav, navigation_node $eventialsnode=null) {
-    // TODO Delete this function and its docblock, or implement it.
 }
