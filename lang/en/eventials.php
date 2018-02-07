@@ -25,7 +25,7 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$string['modulename'] = 'eventials';
+$string['modulename'] = 'Eventials Webinar';
 $string['modulenameplural'] = 'eventials';
 $string['modulename_help'] = 'Create webinars with the Eventials plugin';
 $string['eventials:addinstance'] = 'Add new webinar';
@@ -35,4 +35,4 @@ $string['eventialsname'] = 'Eventials';
 $string['eventialsname_help'] = 'You can create a webinar to watch it live.';
 $string['eventials'] = 'eventials';
 $string['pluginadministration'] = 'Eventials';
-$string['pluginname'] = 'eventials';
+$string['pluginname'] = 'Eventials Webinar';
