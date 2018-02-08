@@ -129,10 +129,11 @@ function eventials_add_speaker($webinar_id, $speaker_email, $token, $client){
         ['headers' => ['Authorization'=>"Bearer {$token}"],  'Content-Type'=>'application/json']);
 
     $body=$res->getBody();
-    if($body == null){
+    $speakers=json_decode($body);
+    if($speakers == null){
         eventials_add_speaker_to_webinar($webinar_id, $speaker_email, $token, $client);
     } else {
-        $speakers=json_decode($body);
+
         $speaker_already_added_to_webinar = false;
         foreach ($speakers as $speaker){
             if($speaker->email == $speaker_email)

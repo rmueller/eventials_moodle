@@ -86,6 +86,7 @@ function eventials_add_instance(stdClass $eventials, mod_eventials_mod_form $mfo
     $duration = $eventials->duration / 3600;
     $speaker_email=trim($eventials->speaker_email);
     // TODO get all timezone lists and send the correct one
+
     $webinar = eventials_schedule_webinar($eventials->title,gmdate("Y-m-d\TH:i:s\Z", $eventials->start_time)
         ,$duration,$eventials->description,
         69, $speaker_email);
@@ -94,13 +95,8 @@ function eventials_add_instance(stdClass $eventials, mod_eventials_mod_form $mfo
     $eventials->webinar_embed_player = $webinar->embed->player;
     $eventials->webinar_embed_chat = $webinar->embed->chat;
     $eventials->speaker_email =$speaker_email;
-    // only available in public webinars
-    // $eventials->webinar_embed_player = $webinar->embed->player;
-    // $eventials->webinar_embed_chat = $webinar->embed->chat;
 
     $eventials->id = $DB->insert_record('eventials', $eventials);
-
-    eventials_grade_item_update($eventials);
 
     return $eventials->id;
 }
@@ -133,7 +129,7 @@ function eventials_update_instance(stdClass $eventials, mod_eventials_mod_form $
 
     $result = $DB->update_record('eventials', $eventials);
 
-    eventials_grade_item_update($eventials);
+    //eventials_grade_item_update($eventials);
 
     return $result;
 }
@@ -188,7 +184,7 @@ function eventials_delete_instance($id) {
     eventials_delete_webinar($eventials->webinar_id);
     $DB->delete_records('eventials', array('id' => $eventials->id));
 
-    eventials_grade_item_delete($eventials);
+    //eventials_grade_item_delete($eventials);
 
     return true;
 }
