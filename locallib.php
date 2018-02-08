@@ -124,17 +124,23 @@ function eventials_update_webinar($webinar_id, $title, $start_time, $duration, $
 function eventials_add_speaker($webinar_id, $speaker_email, $token, $client){
     $speaker_email=trim($speaker_email);
 
+    $client = new \GuzzleHttp\Client();
     $res = $client->request('GET', "https://api.eventials.com/v1/webinars/{$webinar_id}/speakers",
         ['headers' => ['Authorization'=>"Bearer {$token}"],  'Content-Type'=>'application/json']);
 
-    $speakers=json_decode($res->getBody());
-    $speaker_already_added_to_webinar = false;
-    foreach ($speakers as $speaker){
-        if($speaker->email == $speaker_email)
-            $speaker_already_added_to_webinar=true;
-    }
-    if(!$speaker_already_added_to_webinar)
+    $body=$res->getBody();
+    if($body == null){
         eventials_add_speaker_to_webinar($webinar_id, $speaker_email, $token, $client);
+    } else {
+        $speakers=json_decode($body);
+        $speaker_already_added_to_webinar = false;
+        foreach ($speakers as $speaker){
+            if($speaker->email == $speaker_email)
+                $speaker_already_added_to_webinar=true;
+        }
+        if(!$speaker_already_added_to_webinar)
+            eventials_add_speaker_to_webinar($webinar_id, $speaker_email, $token, $client);
+    }
 }
 
 function eventials_add_speaker_to_webinar($webinar_id, $speaker_email, $token, $client)

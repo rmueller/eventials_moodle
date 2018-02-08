@@ -28,7 +28,7 @@
 defined('MOODLE_INTERNAL') || die();
 
 $plugin->component = 'mod_eventials';
-$plugin->version = 1.0;
+$plugin->version = 20180201;
 $plugin->release = 'v1.0';
 $plugin->requires = 2016052300;
 $plugin->cron = 0;
