@@ -29,6 +29,7 @@ require_once(dirname(dirname(dirname(__FILE__))).'/config.php');
 require_once(dirname(__FILE__).'/lib.php');
 require_once(dirname(__FILE__).'/locallib.php');
 require_once(dirname(__FILE__).'/vendor/autoload.php');
+global $USER;
 
 $id = optional_param('id', 0, PARAM_INT); // Course_module ID, or
 $n  = optional_param('n', 0, PARAM_INT);  // ... eventials instance ID - it should be named as the first character of the module.
@@ -85,9 +86,10 @@ if($USER->id == $eventials->speaker_email){
     $link = "{$eventials->webinar_uri}?transmission=true";
     echo $OUTPUT->heading("Acesse <a href='{$link}'>A -{$link}</a> para acompanhar o webinar.");
 } else {
+    // $USER->email
     echo $OUTPUT->box("
-            <iframe src=\"{$eventials->webinar_embed_player}\" width=\"640\" height=\"354\" webkitAllowFullScreen mozallowfullscreen allowFullScreen frameborder=\"0\" scrolling=\"no\" marginheight=\"0\" marginwidth=\"0\"></iframe>
-            <iframe src=\"{$eventials->webinar_embed_chat}?\" width=\"340\" height=\"354\" webkitAllowFullScreen mozallowfullscreen allowFullScreen frameborder=\"0\" scrolling=\"no\" marginheight=\"0\" marginwidth=\"0\"></iframe>
+            <iframe src=\"{$eventials->webinar_embed_player}?email={$USER->email}\" width=\"640\" height=\"354\" webkitAllowFullScreen mozallowfullscreen allowFullScreen frameborder=\"0\" scrolling=\"no\" marginheight=\"0\" marginwidth=\"0\"></iframe>
+            <iframe src=\"{$eventials->webinar_embed_chat}?email={$USER->email}\" width=\"340\" height=\"354\" webkitAllowFullScreen mozallowfullscreen allowFullScreen frameborder=\"0\" scrolling=\"no\" marginheight=\"0\" marginwidth=\"0\"></iframe>
         ");
 
 }
