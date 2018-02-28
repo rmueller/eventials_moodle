@@ -89,7 +89,7 @@ if($USER->id == $eventials->speaker_email){
     // $USER->email
     echo $OUTPUT->box("
             <iframe src=\"{$eventials->webinar_embed_player}?email={$USER->email}\" width=\"640\" height=\"354\" webkitAllowFullScreen mozallowfullscreen allowFullScreen frameborder=\"0\" scrolling=\"no\" marginheight=\"0\" marginwidth=\"0\"></iframe>
-            <iframe src=\"{$eventials->webinar_embed_chat}?email={$USER->email}\" width=\"340\" height=\"354\" webkitAllowFullScreen mozallowfullscreen allowFullScreen frameborder=\"0\" scrolling=\"no\" marginheight=\"0\" marginwidth=\"0\"></iframe>
+            <iframe src=\"{$eventials->webinar_embed_chat}?username={$USER->username}\" width=\"340\" height=\"354\" webkitAllowFullScreen mozallowfullscreen allowFullScreen frameborder=\"0\" scrolling=\"no\" marginheight=\"0\" marginwidth=\"0\"></iframe>
         ");
 
 }
