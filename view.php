@@ -87,7 +87,7 @@ if($USER->id == $eventials->speaker_email){
     echo $OUTPUT->heading("Acesse <a href='{$link}'>A -{$link}</a> para acompanhar o webinar.");
 } else {
     echo $OUTPUT->box("
-            <iframe src=\"{$eventials->webinar_embed_player}?email={$USER->email}&customVar={email:{$USER->email}}\" width=\"640\" height=\"354\" webkitAllowFullScreen mozallowfullscreen allowFullScreen frameborder=\"0\" scrolling=\"no\" marginheight=\"0\" marginwidth=\"0\"></iframe>
+            <iframe src=\"{$eventials->webinar_embed_player}?email={$USER->email}&custom_var={email:{$USER->email}}\" width=\"640\" height=\"354\" webkitAllowFullScreen mozallowfullscreen allowFullScreen frameborder=\"0\" scrolling=\"no\" marginheight=\"0\" marginwidth=\"0\"></iframe>
             <iframe src=\"{$eventials->webinar_embed_chat}?username={$USER->username}\" width=\"340\" height=\"354\" webkitAllowFullScreen mozallowfullscreen allowFullScreen frameborder=\"0\" scrolling=\"no\" marginheight=\"0\" marginwidth=\"0\"></iframe>
         ");
 
